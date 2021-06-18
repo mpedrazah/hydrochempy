@@ -1,4 +1,3 @@
--m pip install --upgrade pip
 pip install streamlit 
 pip install numpy 
 pip install matplotlib 
