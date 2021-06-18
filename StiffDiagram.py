@@ -76,7 +76,7 @@ try:
         plt.subplot(nrow,ncol,sID+1)
         # plt.hold(True)
         # define x coordinates of fill
-        x=[-obs['NaK'].iloc[sID], -obs['Ca'].iloc[sID], -obs['Mg'].iloc[sID],obs['SO4'].iloc[sID] , obs['HCO3'].iloc[sID], obs['Cl'].iloc[sID], -obs['NaK'].iloc[sID]]
+        x=[-obs['NaK'].iloc[sID], -obs['Ca'].iloc[sID], -obs['Mg'].iloc[sID],obs['Cl'].iloc[sID] , obs['SO4'].iloc[sID], obs['HCO3'].iloc[sID], -obs['NaK'].iloc[sID]]
         y=[3,2,1,1,2,3,3]
     
         # Stiff plots with color depending on water type
@@ -100,12 +100,14 @@ try:
         plt.ylim(0.8, 3.2)
     
         ax.yaxis.set_label_position("left")
-        plt.yticks([3,1,2],{'Na+K','Ca','Mg'})
-        plt.xlim([-max_val,max_val])
+        plt.yticks([2,1,3],{'Na+K','Ca','Mg'})
+        plt.xlim([-30,30])
+        #plt.xlim([-max_val,max_val])
         ax2 = ax.twinx()
         #ax2.yaxis.set_label_position("right")
         # ax2.yaxis.tick_right()
         ax2.set_yticks([0,1,0.5])
+        plt.ylim(-0.1,1.1)
         ax2.set_yticklabels({r'$SO_{4}$',r'$HCO_{3}$','Cl'})
     
         # for spine in plt.gca().spines.values():
