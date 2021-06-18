@@ -1,7 +1,7 @@
-pip install streamlit 
-pip install numpy 
-pip install matplotlib 
-pip install os
-pip install math
-pip install seaborn
-pip install pandas
+streamlit 
+numpy 
+matplotlib 
+os
+math
+seaborn
+pandas
