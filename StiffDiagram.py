@@ -42,12 +42,14 @@ def roundup(x):
 
 #%%
 st.sidebar.write('Which station would you like to plot a Stiff Diagram for:')
-
+c=sns.color_palette("colorblind", len(obs))
+    
 if st.sidebar.checkbox('All Stations'):
     obs=obs
     nosamples = len(obs) # # number samples
     ncol = 2 # number of columns of subplot
     nrow = 3 # number of rows of subplot
+    print_ID='All'
 elif st.sidebar.checkbox('Individual'):
     option = st.sidebar.selectbox(
     'Station:',
@@ -56,25 +58,29 @@ elif st.sidebar.checkbox('Individual'):
     nosamples = len(obs) # # number samples
     ncol = 1 # number of columns of subplot
     nrow = 1 #
-
-
+    print_ID=option
 try:
     fig=plt.figure(figsize=(12,8))
     
-    c=sns.color_palette("colorblind", nosamples)
+    left_max=roundup(max([obs.NaK.max(),obs.Ca.max(),obs.Mg.max()]))
+    right_max=roundup(max([obs.SO4.max(),obs.Cl.max(),obs.HCO3.max()]))
     
-    left_max=max([obs.NaK.max(),obs.Ca.max(),obs.Mg.max()])
-    right_max=max([obs.SO4.max(),obs.Cl.max(),obs.HCO3.max()])
+    if left_max >= right_max:
+        max_val=left_max
+    else:
+        max_val=right_max
     
     for sID in range(0, nosamples):
+            
+        ind=obs.index[obs['Station'] == (obs['Station'].iloc[sID])].tolist()[0]
         plt.subplot(nrow,ncol,sID+1)
         # plt.hold(True)
         # define x coordinates of fill
-        x=[-obs['NaK'].iloc[sID], -obs['Ca'].iloc[sID], -obs['Mg'].iloc[sID],obs['Cl'].iloc[sID] , obs['HCO3'].iloc[sID], obs['SO4'].iloc[sID], -obs['NaK'].iloc[sID]]
+        x=[-obs['NaK'].iloc[sID], -obs['Ca'].iloc[sID], -obs['Mg'].iloc[sID],obs['SO4'].iloc[sID] , obs['HCO3'].iloc[sID], obs['Cl'].iloc[sID], -obs['NaK'].iloc[sID]]
         y=[3,2,1,1,2,3,3]
     
         # Stiff plots with color depending on water type
-        h1=plt.fill(x, y, c=c[sID],alpha=0.35)
+        h1=plt.fill(x, y, c=c[ind],alpha=0.35)
         plt.plot([0,0], [1,3],'--w')
         plt.title(obs['Station'].iloc[sID])
         
@@ -82,11 +88,11 @@ try:
         minor_ticks = np.arange(-50, 50, 5)
       
         ax=plt.gca()
-        ax.set_xticks(minor_ticks, minor=True)
-          
+        ax.xaxis.set_major_locator(plt.MaxNLocator(7))
+        ax.xaxis.set_minor_locator(plt.MaxNLocator(14)) 
         ax.grid(alpha=0.35, b=True, which='major',axis='both')
         ax.grid(b=True, which='minor', alpha=0.25, linestyle='--')
-        ax.xaxis.set_major_locator(plt.MaxNLocator(6))
+        
        
         if sID == len(obs)-1:
             plt.xlabel('(meq/L)')
@@ -94,12 +100,12 @@ try:
         plt.ylim(0.8, 3.2)
     
         ax.yaxis.set_label_position("left")
-        plt.yticks([1,2,3],{'Na+K','Ca','Mg'})
-        plt.xlim([-roundup(left_max),roundup(right_max)])
+        plt.yticks([3,1,2],{'Na+K','Ca','Mg'})
+        plt.xlim([-max_val,max_val])
         ax2 = ax.twinx()
         #ax2.yaxis.set_label_position("right")
         # ax2.yaxis.tick_right()
-        ax2.set_yticks([0,0.5,1])
+        ax2.set_yticks([0,1,0.5])
         ax2.set_yticklabels({r'$SO_{4}$',r'$HCO_{3}$','Cl'})
     
         # for spine in plt.gca().spines.values():
@@ -107,10 +113,12 @@ try:
     
     # adjust position subplots
     plt.subplots_adjust(left=0.1, bottom=0.2, right=1, top=0.95, wspace=0.35, hspace=0.40)
-    plt.tight_layout()   
-    #outputs and saves the diagram
-    # plt.savefig("Stiff_Diagrams"+ ".png",dpi=350,bbox_inches='tight')
+    plt.tight_layout()  
     st.pyplot(fig)
+    #outputs and saves the diagram
+    if st.checkbox('Save figure to computer'):
+        plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
+
 except NameError:
     st.write('')
 
