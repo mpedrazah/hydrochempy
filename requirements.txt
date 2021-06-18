@@ -1,7 +1,6 @@
 streamlit 
 numpy 
 matplotlib 
-os
 math
 seaborn
 pandas
