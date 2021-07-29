@@ -202,7 +202,7 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
-        new=wl_plot[['MeasurementDate','WaterElevation','MeasuringAgency','MethodofMeasurement']]
+        new=wl_plot[['MeasurementDate','WaterElevation','MeasuringAgency','MethodOfMeasurement']]
         new
 
 
