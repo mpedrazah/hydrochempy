@@ -42,15 +42,14 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 #%%
+aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
+                   'Rustler':'#4fc4db','Capitan Reef Complex':'#a2b1b3','Capitan Limestone':'grey',
+                   'Pecos Valley':'#e6b010','Dockum':'#c426c9','Other':'orange','Pecos Valley/Dockum':'pink',
+                   'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
 st.sidebar.write('Which functionality would you like to use:')
 if st.sidebar.checkbox('Water Quality'):
     obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
     st.write('Which well would you like to plot a Stiff Diagram for:')
-    aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
-                    'Rustler':'#4fc4db','Capitan Reef Complex':'#a2b1b3','Capitan Limestone':'grey',
-                    'Pecos Valley':'#e6b010','Dockum':'#c426c9','Other':'orange','Pecos Valley/Dockum':'pink',
-                    'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
-        
     if st.checkbox('MPGCD Well'):
         mpgcd_obs=obs[obs.Source=='MPGCD'].sort_values(by=['Station'])
         option = st.selectbox(
