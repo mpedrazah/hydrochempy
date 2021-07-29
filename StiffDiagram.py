@@ -22,9 +22,7 @@ st.title('Stiff Diagram App')
 
 st.write('The following data has been imported from Data.csv in meq/L')
 obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
-obs_edit=obs[['Station','Aquifer','Date','Cl','HCO3','SO4','NaK','Ca','Mg','TDS','Source']]
-obs_edit.rename(columns={'Station' :'Well ID'},inplace=True)
-obs_edit
+
 #%%
 
 # Change default settings for figures
@@ -69,6 +67,11 @@ elif st.sidebar.checkbox('TWDB Well'):
     nrow = 1 #
     print_ID=option
 try:
+    
+    obs_edit=obs[['Station','Aquifer','Date','Cl','HCO3','SO4','NaK','Ca','Mg','TDS','Source']]
+    obs_edit.rename(columns={'Station' :'Well ID'},inplace=True)
+    obs_edit
+    
     fig=plt.figure(figsize=(12,8))
     
     left_max=roundup(max([obs.NaK.max(),obs.Ca.max(),obs.Mg.max()]))
