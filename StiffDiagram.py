@@ -25,7 +25,7 @@ obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
 
 
 #%%water levels
-# wl_wells=pd.read_csv("TWDB_MPGCD_WLs_Clipped.csv")
+wl_wells=pd.read_csv("TWDB_MPGCD_WLs_Clipped.csv")
 
 # twdb_wl=pd.read_csv('WaterLevelsByCounty.csv',
 #                     parse_dates=['Date'], dayfirst=False)
