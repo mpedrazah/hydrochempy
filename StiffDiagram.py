@@ -168,9 +168,9 @@ elif st.sidebar.checkbox('Water Levels'):
         sns.set_style("darkgrid")
         elev=obs.Elevation.iloc[0]
         aq_name=obs.AquiferNam.iloc[0]
-        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + str(option) + '-' + aq_name + ' Depth ' +str(depth))
+        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + str(int(option)) + '-' + aq_name + ' Depth ' +str(depth))
         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
-        plt.title('MPGD Well ID: ' + str(wellname) , fontsize=14)
+        plt.title('MPGD Well ID: ' + str(int(wellname)) , fontsize=14)
         plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
         plt.tick_params(labelsize=14)
         plt.xlabel('Year', fontsize=14)
@@ -187,9 +187,8 @@ elif st.sidebar.checkbox('Water Levels'):
         wl_plot=twdb_wl[twdb_wl.StateWellNumber==option]
         fig=plt.figure(figsize=(9, 3))
         sns.set_style("darkgrid")
-        aq_name=wl_plot.Aquifer.unique()[0]
-        depth2=wl_plot.WellDepth.unique()[0]
-        aq_cod=obs.AquiferCod.iloc[0]
+        aq_name=obs.AquiferNam.iloc[0]
+        depth2=obs.WellDepth.iloc[0]
         plt.scatter(wl_plot.MeasurementDate,wl_plot.WaterElevation, alpha=0.5,marker='s',c=aq_color_names[aq_name],label='Well ' + str(option) + '-' + aq_name+ ' Depth ' +str(depth2))
         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
         plt.title('TWDB State Well Number: ' + str(wellname) , fontsize=14)
