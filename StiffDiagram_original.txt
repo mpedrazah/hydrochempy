@@ -21,7 +21,7 @@ from matplotlib.ticker import FuncFormatter
 st.title('Stiff Diagram App')
 
 st.write('The following data has been imported from Data.csv in meq/L')
-obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
+obs=pd.read_csv("Data.csv")
 obs
 
 #%%
@@ -72,7 +72,7 @@ try:
     
     for sID in range(0, nosamples):
             
-         ind=obs.index[obs['Station'] == (obs['Station'].iloc[sID])].tolist()[0]
+        ind=obs.index[obs['Station'] == (obs['Station'].iloc[sID])].tolist()[0]
         plt.subplot(nrow,ncol,sID+1)
         # plt.hold(True)
         # define x coordinates of fill
@@ -100,8 +100,8 @@ try:
         plt.ylim(0.8, 3.2)
     
         ax.yaxis.set_label_position("left")
-        plt.yticks([1,2,3],{'Na+K','Ca','Mg'}) #2,1,3
-        plt.xlim([-35,35])
+        plt.yticks([2,1,3],{'Na+K','Ca','Mg'})
+        plt.xlim([-30,30])
         #plt.xlim([-max_val,max_val])
         ax2 = ax.twinx()
         #ax2.yaxis.set_label_position("right")
@@ -119,8 +119,8 @@ try:
     plt.tight_layout()  
     st.pyplot(fig)
     #outputs and saves the diagram
-   # if st.checkbox('Save figure to computer'):
-    #    plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
+    if st.checkbox('Save figure to computer'):
+        plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
 
 except NameError:
     st.write('')
