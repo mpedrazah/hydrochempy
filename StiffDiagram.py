@@ -53,7 +53,7 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 #%%
-
+st.sidebar.write('Which functionality would you like to use:')
 if st.sidebar.checkbox('Water Quality'):
     st.write('Which well would you like to plot a Stiff Diagram for:')
     aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
