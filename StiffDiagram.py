@@ -18,7 +18,7 @@ import pandas as pd
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import FuncFormatter
 #%%
-st.title('Plotting App')
+#st.title('Plotting App')
 
 #st.write('The following data has been imported from Data.csv in meq/L')
 
