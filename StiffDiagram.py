@@ -164,7 +164,7 @@ elif st.sidebar.checkbox('Water Levels'):
         else:
             depth='NAN'
         wl_plot=wl[wl.WellId==obs.FID_.iloc[0]]
-        plt.figure(figsize=(9, 3))
+        fig=plt.figure(figsize=(9, 3))
         sns.set_style("darkgrid")
         elev=obs.Elevation.iloc[0]
         aq_name=obs.AquiferNam.iloc[0]
@@ -185,7 +185,7 @@ elif st.sidebar.checkbox('Water Levels'):
         wellname=option
         ownername=obs.OwnerName.iloc[0]
         wl_plot=twdb_wl[twdb_wl.StateWellNumber==option]
-        plt.figure(figsize=(9, 3))
+        fig=plt.figure(figsize=(9, 3))
         sns.set_style("darkgrid")
         aq_name=wl_plot.Aquifer.unique()[0]
         depth2=wl_plot.WellDepth.unique()[0]
