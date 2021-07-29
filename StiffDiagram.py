@@ -184,7 +184,7 @@ elif st.sidebar.checkbox('Water Levels'):
         obs=twdb_obs[twdb_obs.StateWellN==option]
         wellname=option
         ownername=obs.OwnerName.iloc[0]
-        wl_plot=twdb_wl[twdb_wl.StateWellNumber==option]
+        wl_plot=twdb_wl[twdb_wl.StateWellNumber==int(option)]
         fig=plt.figure(figsize=(9, 3))
         sns.set_style("darkgrid")
         aq_name=obs.AquiferNam.iloc[0]
