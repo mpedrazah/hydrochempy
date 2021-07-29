@@ -47,7 +47,7 @@ aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
                 'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
     
 if st.checkbox('MPGCD Well'):
-    mpgcd_obs=obs[obs.Source=='MPGCD']
+    mpgcd_obs=obs[obs.Source=='MPGCD'].sort_values(by=['Station'])
     option = st.selectbox(
     'MPGCD Well:',
     mpgcd_obs['Station'])
@@ -57,7 +57,7 @@ if st.checkbox('MPGCD Well'):
     nrow = 1 #
     print_ID=option
 elif st.checkbox('TWDB Well'):
-    twdb_obs=obs[obs.Source=='TWDB']
+    twdb_obs=obs[obs.Source=='TWDB'].sort_values(by=['Station'])
     option = st.selectbox(
     'TWDB Well:',
     twdb_obs['Station'])
