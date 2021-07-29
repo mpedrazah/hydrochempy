@@ -23,6 +23,7 @@ st.title('Stiff Diagram App')
 st.write('The following data has been imported from Data.csv in meq/L')
 obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
 obs_edit=obs[['Station','Aquifer','Date','Cl','HCO3','SO4','NaK','Ca','Mg','TDS','Source']]
+obs_edit.rename(columns={'Station' :'Well ID'},inplace=True)
 obs_edit
 #%%
 
@@ -42,7 +43,10 @@ def roundup(x):
 
 #%%
 st.sidebar.write('Which station would you like to plot a Stiff Diagram for:')
-c=sns.color_palette("colorblind", len(obs))
+aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
+                'Rustler':'#4fc4db','Capitan Reef Complex':'#a2b1b3','Capitan Limestone':'grey',
+                'Pecos Valley':'#e6b010','Dockum':'#c426c9','Other':'orange','Pecos Valley/Dockum':'pink',
+                'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
     
 if st.sidebar.checkbox('MPGCD Well'):
     mpgcd_obs=obs[obs.Source=='MPGCD']
@@ -85,9 +89,9 @@ try:
         y=[3,2,1,1,2,3,3]
     
         # Stiff plots with color depending on water type
-        h1=plt.fill(x, y, c=c[ind],alpha=0.35)
+        h1=plt.fill(x, y,c=aq_color_names[obs.Aquifer.loc[ind]], alpha=0.35)
         plt.plot([0,0], [1,3],'--w')
-        plt.title('Well ID: ' + obs['Station'].iloc[sID] + ' Aquifer: ' + obs['Aquifer'].iloc[sID] +'\n Collection Date: ' + str(obs['Date'].iloc[sID]))
+        plt.title('Well ID: ' + str(int(obs['Station'].iloc[sID])) + ' Aquifer: ' + obs['Aquifer'].iloc[sID] +'\n Collection Date: ' + str(obs['Date'].iloc[sID][0:10]))
         
         plt.tick_params(top='off', bottom='off', left='off', right='off', labelleft='on', labelright='on', labelbottom='on')
         minor_ticks = np.arange(-50, 50, 5)
