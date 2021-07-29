@@ -131,8 +131,8 @@ try:
     plt.tight_layout()  
     st.pyplot(fig)
     #outputs and saves the diagram
-    if st.checkbox('Save figure to computer'):
-        plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
+    #if st.checkbox('Save figure to computer'):
+     #   plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
 
 except NameError:
     st.write('')
