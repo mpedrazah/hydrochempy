@@ -47,7 +47,8 @@ aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
                    'Pecos Valley':'#e6b010','Dockum':'#c426c9','Other':'orange','Pecos Valley/Dockum':'pink',
                    'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
 st.sidebar.write('Which functionality would you like to use:')
-if st.sidebar.checkbox('Water Quality'):
+tool = st.radio("Select Tool: ", ('Water Quality', 'Water Levels'))
+if tool=='Water Quality':
     obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
     st.write('Which well would you like to plot a Stiff Diagram for:')
     if st.checkbox('MPGCD Well'):
@@ -142,7 +143,7 @@ if st.sidebar.checkbox('Water Quality'):
         st.write('Apolgies. Something went wrong.')
     
     
-elif st.sidebar.checkbox('Water Levels'):
+elif tool=='Water Levels':
     wl_wells=pd.read_csv("TWDB_MPGCD_WLs_Clipped.csv")
     twdb_wl=pd.read_csv('WaterLevelsByCounty.csv')
     twdb_wl['MeasurementDate'] = pd.to_datetime(twdb_wl.Date, dayfirst=False)
