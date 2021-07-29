@@ -155,72 +155,72 @@ if st.sidebar.checkbox('Water Quality'):
     
 elif st.sidebar.checkbox('Water Levels'):
     st.write('Which well would you like to plot a Hydrograph for:')
-    if st.checkbox('MPGCD Well'):
-        mpgcd_obs=wl_wells[wl_wells.Source=='MPGCD'].sort_values(by=['DistrictId'])
-        option = st.selectbox(
-        'MPGCD Well:',
-        mpgcd_obs['DistrictId'])
-        obs=mpgcd_obs[mpgcd_obs.DistrictId==option]
-        nosamples = len(obs) # # number samples
-        ncol = 1 # number of columns of subplot
-        nrow = 1 #
-        print_ID=option
-    elif st.checkbox('TWDB Well'):
-        twdb_obs=wl_wells[wl_wells.Source=='TWDB'].sort_values(by=['StateWellN'])
-        option = st.selectbox(
-        'TWDB Well:',
-        twdb_obs['StateWellN'])
-        obs=twdb_obs[twdb_obs.StateWellN==option]
-        nosamples = len(obs) # # number samples
-        ncol = 1 # number of columns of subplot
-        nrow = 1 #
-        print_ID=option
-    try:
-        if obs.Source.iloc[0]=='MPGCD':
-            dep=obs.WellDepth.iloc[0]
-            wellname=option
-            ownername=obs.OwnerName.iloc[0]
-            if (dep)>0:
-                depth=dep
-            else:
-                depth='NAN'
-            wl_plot=wl[wl.WellId==obs.FID_.iloc[0]]
-            plt.figure(figsize=(9, 3))
-            sns.set_style("darkgrid")
-            elev=obs.Elevation.iloc[0]
-            aq_name=obs.AquiferNam.iloc[0]
-            plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_colors[aq_id],alpha=0.7,label='Well ' + str(i) + '-' + aq_name + ' Depth ' +str(depth))
-            plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
-            plt.title('MPGD Well ID: ' + str(wellname) , fontsize=14)
-            plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
-            plt.tick_params(labelsize=14)
-            plt.xlabel('Year', fontsize=14)
-            #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
-            plt.show()
-        elif obs.Source.iloc[0]=='TWDB':
-            wellname=option
-            ownername=obs.OwnerName.iloc[0]
-            wl_plot=twdb_wl[twdb_wl.StateWellNumber==option]
-            plt.figure(figsize=(9, 3))
-            sns.set_style("darkgrid")
-            aq_name=wl_plot.Aquifer.unique()[0]
-            if aq_name=='Other':
-                aq_name='Capitan Limestone'
-                color=aq_color_names[aq_name]
-            else:
-                color=aq_color_names[aq_name]
-            depth2=wl_plot.WellDepth.unique()[0]
-            aq_cod=twdb_wells[twdb_wells.StateWellN==i].AquiferCod.iloc[0]
-            plt.scatter(wl_plot.MeasurementDate,wl_plot.WaterElevation, alpha=0.5,marker='s',c=color,label='Well ' + str(i) + '-' + aq_name+ ' Depth ' +str(depth2))
-            plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
-            plt.title('TWDB State Well Number: ' + str(wellname) , fontsize=14)
-            plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
-            plt.tick_params(labelsize=14)
-            plt.xlabel('Year', fontsize=14)
-            #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
-            plt.show()
+    # if st.checkbox('MPGCD Well'):
+    #     mpgcd_obs=wl_wells[wl_wells.Source=='MPGCD'].sort_values(by=['DistrictId'])
+    #     option = st.selectbox(
+    #     'MPGCD Well:',
+    #     mpgcd_obs['DistrictId'])
+    #     obs=mpgcd_obs[mpgcd_obs.DistrictId==option]
+    #     nosamples = len(obs) # # number samples
+    #     ncol = 1 # number of columns of subplot
+    #     nrow = 1 #
+    #     print_ID=option
+    # elif st.checkbox('TWDB Well'):
+    #     twdb_obs=wl_wells[wl_wells.Source=='TWDB'].sort_values(by=['StateWellN'])
+    #     option = st.selectbox(
+    #     'TWDB Well:',
+    #     twdb_obs['StateWellN'])
+    #     obs=twdb_obs[twdb_obs.StateWellN==option]
+    #     nosamples = len(obs) # # number samples
+    #     ncol = 1 # number of columns of subplot
+    #     nrow = 1 #
+    #     print_ID=option
+    # try:
+    #     if obs.Source.iloc[0]=='MPGCD':
+    #         dep=obs.WellDepth.iloc[0]
+    #         wellname=option
+    #         ownername=obs.OwnerName.iloc[0]
+    #         if (dep)>0:
+    #             depth=dep
+    #         else:
+    #             depth='NAN'
+    #         wl_plot=wl[wl.WellId==obs.FID_.iloc[0]]
+    #         plt.figure(figsize=(9, 3))
+    #         sns.set_style("darkgrid")
+    #         elev=obs.Elevation.iloc[0]
+    #         aq_name=obs.AquiferNam.iloc[0]
+    #         plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_colors[aq_id],alpha=0.7,label='Well ' + str(i) + '-' + aq_name + ' Depth ' +str(depth))
+    #         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
+    #         plt.title('MPGD Well ID: ' + str(wellname) , fontsize=14)
+    #         plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
+    #         plt.tick_params(labelsize=14)
+    #         plt.xlabel('Year', fontsize=14)
+    #         #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
+    #         plt.show()
+    #     elif obs.Source.iloc[0]=='TWDB':
+    #         wellname=option
+    #         ownername=obs.OwnerName.iloc[0]
+    #         wl_plot=twdb_wl[twdb_wl.StateWellNumber==option]
+    #         plt.figure(figsize=(9, 3))
+    #         sns.set_style("darkgrid")
+    #         aq_name=wl_plot.Aquifer.unique()[0]
+    #         if aq_name=='Other':
+    #             aq_name='Capitan Limestone'
+    #             color=aq_color_names[aq_name]
+    #         else:
+    #             color=aq_color_names[aq_name]
+    #         depth2=wl_plot.WellDepth.unique()[0]
+    #         aq_cod=twdb_wells[twdb_wells.StateWellN==i].AquiferCod.iloc[0]
+    #         plt.scatter(wl_plot.MeasurementDate,wl_plot.WaterElevation, alpha=0.5,marker='s',c=color,label='Well ' + str(i) + '-' + aq_name+ ' Depth ' +str(depth2))
+    #         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
+    #         plt.title('TWDB State Well Number: ' + str(wellname) , fontsize=14)
+    #         plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
+    #         plt.tick_params(labelsize=14)
+    #         plt.xlabel('Year', fontsize=14)
+    #         #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
+    #         plt.show()
 
-    except NameError:
-        st.write('Apolgies. Something went wrong.')
+    # except NameError:
+    #     st.write('Apolgies. Something went wrong.')
     
 
