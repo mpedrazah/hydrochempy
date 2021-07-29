@@ -194,7 +194,7 @@ elif st.sidebar.checkbox('Water Levels'):
             plt.tick_params(labelsize=14)
             plt.xlabel('Year', fontsize=14)
             #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
-            plt.show()
+            st.pyplot(fig)
         elif obs.Source.iloc[0]=='TWDB':
             wellname=option
             ownername=obs.OwnerName.iloc[0]
@@ -216,7 +216,7 @@ elif st.sidebar.checkbox('Water Levels'):
             plt.tick_params(labelsize=14)
             plt.xlabel('Year', fontsize=14)
             #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
-            plt.show()
+            st.pyplot(fig)
 
     except NameError:
         st.write('Apolgies. Something went wrong.')
