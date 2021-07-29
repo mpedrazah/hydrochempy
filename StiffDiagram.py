@@ -100,7 +100,7 @@ try:
         plt.ylim(0.8, 3.2)
     
         ax.yaxis.set_label_position("left")
-        plt.yticks([1,2,3],{'Na+K','Ca','Mg'}) #2,1,3
+        plt.yticks([2,1,3],{'Na+K','Ca','Mg'})
         plt.xlim([-35,35])
         #plt.xlim([-max_val,max_val])
         ax2 = ax.twinx()
@@ -119,8 +119,8 @@ try:
     plt.tight_layout()  
     st.pyplot(fig)
     #outputs and saves the diagram
-   # if st.checkbox('Save figure to computer'):
-    #    plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
+    if st.checkbox('Save figure to computer'):
+        plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
 
 except NameError:
     st.write('')
