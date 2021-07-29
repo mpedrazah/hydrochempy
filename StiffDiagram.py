@@ -87,7 +87,7 @@ try:
         # Stiff plots with color depending on water type
         h1=plt.fill(x, y, c=c[ind],alpha=0.35)
         plt.plot([0,0], [1,3],'--w')
-       # plt.title('Well ID: ' + obs['Station'].iloc[sID] + 'Aquifer: ' + obs['Aquifer'].iloc[sID] +'\n Collection Date: ' + obs['Date'].iloc[sID])
+        plt.title('Well ID: ' + obs['Station'].iloc[sID] + ' Aquifer: ' + obs['Aquifer'].iloc[sID] +'\n Collection Date: ' + str(obs['Date'].iloc[sID]))
         
         plt.tick_params(top='off', bottom='off', left='off', right='off', labelleft='on', labelright='on', labelbottom='on')
         minor_ticks = np.arange(-50, 50, 5)
