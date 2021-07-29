@@ -140,7 +140,7 @@ if tool=='Water Quality':
          #   plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
 
     except NameError:
-        st.write('Apolgies. Something went wrong.')
+        st.write('')
     
     
 elif tool=='Water Levels':
