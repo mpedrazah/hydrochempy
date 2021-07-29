@@ -31,8 +31,8 @@ twdb_wl=pd.read_csv('WaterLevelsByCounty.csv')
 twdb_wl['MeasurementDate'] = pd.to_datetime(twdb_wl.Date, dayfirst=False)
 twdb_wl.StateWellNumber=twdb_wl.StateWellNumber.astype(dtype='int32')
 
-# wl=pd.read_excel('FOIA.xls',sheet_name='WaterLevel')
-# wl.MeasurementDate=pd.to_datetime(wl.MeasurementDate)
+wl=pd.read_csv("WaterLevel_FOIA.csv")
+wl.MeasurementDate=pd.to_datetime(wl.MeasurementDate)
 
 #%%
 
