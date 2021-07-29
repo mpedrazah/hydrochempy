@@ -100,7 +100,7 @@ try:
         plt.ylim(0.8, 3.2)
     
         ax.yaxis.set_label_position("left")
-        plt.yticks([2,1,3],{'Na+K','Ca','Mg'})
+        plt.yticks([1,2,3],{'Na+K','Ca','Mg'})
         plt.xlim([-35,35])
         #plt.xlim([-max_val,max_val])
         ax2 = ax.twinx()
@@ -108,7 +108,7 @@ try:
         # ax2.yaxis.tick_right()
         
         plt.ylim(-0.1,1.1)
-        ax2.set_yticks([1,0.5,0])
+        ax2.set_yticks([0,0.5,1])
         ax2.set_yticklabels({r'$SO_{4}$',r'$HCO_{3}$','Cl'})
     
         # for spine in plt.gca().spines.values():
