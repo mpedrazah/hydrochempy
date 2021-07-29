@@ -75,7 +75,7 @@ if tool=='Water Quality':
         
         obs_edit=obs[['Station','Aquifer','Date','Cl','HCO3','SO4','NaK','Ca','Mg','TDS','Source']]
         obs_edit.rename(columns={'Station' :'Well ID'},inplace=True)
-        obs_edit
+        
         
         fig=plt.figure(figsize=(12,8))
         
@@ -135,6 +135,7 @@ if tool=='Water Quality':
         plt.subplots_adjust(left=0.1, bottom=0.2, right=1, top=0.95, wspace=0.35, hspace=0.40)
         plt.tight_layout()  
         st.pyplot(fig)
+        obs_edit
         #outputs and saves the diagram
         #if st.checkbox('Save figure to computer'):
          #   plt.savefig("Stiff_Diagrams"+ "_" + print_ID +".png",dpi=350,bbox_inches='tight')
@@ -169,7 +170,7 @@ elif tool=='Water Levels':
         sns.set_style("darkgrid")
         elev=obs.Elevation.iloc[0]
         aq_name=obs.AquiferNam.iloc[0]
-        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + option[:-2] + '-' + aq_name + ' Depth ' +str(depth))
+        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + option[:-2] + '-' + aq_name + ' Depth ' +str(depth))
         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
         plt.title('MPGD Well ID: ' + option[:-2] , fontsize=14)
         plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
@@ -177,6 +178,9 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
+        new=wl_plot[['MeasurementDate','FinalDepthToWaterFeet']]
+        new['WaterElevation']=elev-new.FinalDepthToWaterFeet
+        new
     elif st.checkbox('TWDB Well'):
         twdb_obs=wl_wells[wl_wells.Source=='TWDB'].sort_values(by=['StateWellN'])
         option = st.selectbox(
@@ -198,5 +202,7 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
+        new=wl_plot[['MeasurementDate','WaterElevation']]
+        new
 
 
