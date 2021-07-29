@@ -40,15 +40,15 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 #%%
-st.sidebar.write('Which station would you like to plot a Stiff Diagram for:')
+st.write('Which well would you like to plot a Stiff Diagram for:')
 aq_color_names={'Edwards-Trinity Plateau':'#69c97e','Edwards-Trinity':'#69c97e',
                 'Rustler':'#4fc4db','Capitan Reef Complex':'#a2b1b3','Capitan Limestone':'grey',
                 'Pecos Valley':'#e6b010','Dockum':'#c426c9','Other':'orange','Pecos Valley/Dockum':'pink',
                 'Pecos Valley/Edwards-Trinity Plateau':'yellow'}
     
-if st.sidebar.checkbox('MPGCD Well'):
+if st.checkbox('MPGCD Well'):
     mpgcd_obs=obs[obs.Source=='MPGCD']
-    option = st.sidebar.selectbox(
+    option = st.selectbox(
     'MPGCD Well:',
     mpgcd_obs['Station'])
     obs=mpgcd_obs[mpgcd_obs.Station==option]
@@ -56,9 +56,9 @@ if st.sidebar.checkbox('MPGCD Well'):
     ncol = 1 # number of columns of subplot
     nrow = 1 #
     print_ID=option
-elif st.sidebar.checkbox('TWDB Well'):
+elif st.checkbox('TWDB Well'):
     twdb_obs=obs[obs.Source=='TWDB']
-    option = st.sidebar.selectbox(
+    option = st.selectbox(
     'TWDB Well:',
     twdb_obs['Station'])
     obs=twdb_obs[twdb_obs.Station==option]
