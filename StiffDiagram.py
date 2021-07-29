@@ -170,7 +170,7 @@ elif tool=='Water Levels':
         sns.set_style("darkgrid")
         elev=obs.Elevation.iloc[0]
         aq_name=obs.AquiferNam.iloc[0]
-        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + option[:-2] + '-' + aq_name + ' Depth ' +str(depth))
+        plt.scatter(wl_plot.MeasurementDate,elev-wl_plot.FinalDepthToWaterFeet, c=aq_color_names[aq_name],alpha=0.7,label='Well ' + option[:-2] + '-' + aq_name + ' Depth ' +str(depth))
         plt.legend(ncol=2,bbox_to_anchor=(1, -0.3))
         plt.title('MPGD Well ID: ' + option[:-2] , fontsize=14)
         plt.ylabel('Water Elevation (ft amsl)',fontsize=14)
@@ -178,9 +178,9 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
-        # new=wl_plot[['MeasurementDate','FinalDepthToWaterFeet']]
-        # new['WaterElevation']=elev-new.FinalDepthToWaterFeet
-        # new
+        new=wl_plot[['MeasurementDate','FinalDepthToWaterFeet','MeasurementMethod','MeasurementAgency']]
+        new['WaterElevation']=elev-new.FinalDepthToWaterFeet
+        new
     elif st.checkbox('TWDB Well'):
         twdb_obs=wl_wells[wl_wells.Source=='TWDB'].sort_values(by=['StateWellN'])
         option = st.selectbox(
@@ -202,7 +202,8 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #  plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
-        new=wl_plot[['MeasurementDate','WaterElevation']]
+        new=wl_plot[['MeasurementDate','WaterElevation','MeasuringAgency','MethodofMeasurement']]
         new
 
 
+#%%
