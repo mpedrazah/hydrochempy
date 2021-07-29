@@ -178,9 +178,9 @@ elif tool=='Water Levels':
         plt.xlabel('Year', fontsize=14)
         #plt.savefig('../Figures/WaterLevel_'+ str(wellname) +'.png', dpi=400,bbox_inches='tight')
         st.pyplot(fig)
-        new=wl_plot[['MeasurementDate','FinalDepthToWaterFeet']]
-        new['WaterElevation']=elev-new.FinalDepthToWaterFeet
-        new
+        # new=wl_plot[['MeasurementDate','FinalDepthToWaterFeet']]
+        # new['WaterElevation']=elev-new.FinalDepthToWaterFeet
+        # new
     elif st.checkbox('TWDB Well'):
         twdb_obs=wl_wells[wl_wells.Source=='TWDB'].sort_values(by=['StateWellN'])
         option = st.selectbox(
