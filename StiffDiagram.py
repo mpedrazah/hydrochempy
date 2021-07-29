@@ -44,7 +44,7 @@ def roundup(x):
 st.sidebar.write('Which station would you like to plot a Stiff Diagram for:')
 c=sns.color_palette("colorblind", len(obs))
     
-if st.sidebar.checkbox('All Stations'):
+if st.sidebar.checkbox('MPGCD Well'):
     mpgcd_obs=obs[obs.Source=='MPGCD']
     option = st.sidebar.selectbox(
     'MPGCD Well:',
@@ -54,10 +54,10 @@ if st.sidebar.checkbox('All Stations'):
     ncol = 1 # number of columns of subplot
     nrow = 1 #
     print_ID=option
-elif st.sidebar.checkbox('Individual'):
+elif st.sidebar.checkbox('TWDB Well'):
     twdb_obs=obs[obs.Source=='TWDB']
     option = st.sidebar.selectbox(
-    'Station:',
+    'TWDB Well:',
     twdb_obs['Station'])
     obs=twdb_obs[twdb_obs.Station==option]
     nosamples = len(obs) # # number samples
