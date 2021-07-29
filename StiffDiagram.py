@@ -22,8 +22,8 @@ st.title('Stiff Diagram App')
 
 st.write('The following data has been imported from Data.csv in meq/L')
 obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
-obs
-
+obs_edit=obs[['Station','Aquifer','Date','Cl','HCO3','SO4','NaK','Ca','Mg','TDS','Source']]
+obs_edit
 #%%
 
 # Change default settings for figures
@@ -87,7 +87,7 @@ try:
         # Stiff plots with color depending on water type
         h1=plt.fill(x, y, c=c[ind],alpha=0.35)
         plt.plot([0,0], [1,3],'--w')
-        plt.title(obs['Station'].iloc[sID])
+        plt.title('Well ID: ' + obs['Station'].iloc[sID] + 'Aquifer: ' + obs['Aquifer'].iloc[sID] +'\n Collection Date: ' + obs['Date'].iloc[sID])
         
         plt.tick_params(top='off', bottom='off', left='off', right='off', labelleft='on', labelright='on', labelbottom='on')
         minor_ticks = np.arange(-50, 50, 5)
