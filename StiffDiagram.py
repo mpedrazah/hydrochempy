@@ -45,16 +45,21 @@ st.sidebar.write('Which station would you like to plot a Stiff Diagram for:')
 c=sns.color_palette("colorblind", len(obs))
     
 if st.sidebar.checkbox('All Stations'):
-    obs=obs
+    mpgcd_obs=obs[obs.Source=='MPGCD']
+    option = st.sidebar.selectbox(
+    'MPGCD Well:',
+    mpgcd_obs['Station'])
+    obs=mpgcd_obs[mpgcd_obs.Station==option]
     nosamples = len(obs) # # number samples
-    ncol = 2 # number of columns of subplot
-    nrow = 3 # number of rows of subplot
-    print_ID='All'
+    ncol = 1 # number of columns of subplot
+    nrow = 1 #
+    print_ID=option
 elif st.sidebar.checkbox('Individual'):
+    twdb_obs=obs[obs.Source=='TWDB']
     option = st.sidebar.selectbox(
     'Station:',
-    obs['Station'])
-    obs=obs[obs.Station==option]
+    twdb_obs['Station'])
+    obs=twdb_obs[twdb_obs.Station==option]
     nosamples = len(obs) # # number samples
     ncol = 1 # number of columns of subplot
     nrow = 1 #
