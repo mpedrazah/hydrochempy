@@ -20,7 +20,7 @@ from matplotlib.ticker import FuncFormatter
 #%%
 st.title('Stiff Diagram App')
 
-st.write('The following data has been imported from Data.csv in meq/L')
+#st.write('The following data has been imported from Data.csv in meq/L')
 obs=pd.read_csv("TWDB_MPGCD_WQs_Clipped.csv")
 
 #%%
