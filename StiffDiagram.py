@@ -72,7 +72,7 @@ try:
     
     for sID in range(0, nosamples):
             
-         ind=obs.index[obs['Station'] == (obs['Station'].iloc[sID])].tolist()[0]
+        ind=obs.index[obs['Station'] == (obs['Station'].iloc[sID])].tolist()[0]
         plt.subplot(nrow,ncol,sID+1)
         # plt.hold(True)
         # define x coordinates of fill
